@@ -1,10 +1,4 @@
 {
-  "install": {
-    "include": [
-      "^.trigger-rebuild$",
-      "package.json"
-    ]
-  },
   "restart": {
     "include": [
       "package.json",
