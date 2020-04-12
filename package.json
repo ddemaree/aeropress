@@ -1,7 +1,4 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
   "name": "hello-sqlite",
   "version": "0.0.1",
   "description": "A simple Node app with SQLite as a database management system, instantly up and running.",
@@ -11,7 +8,10 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "sqlite3": "^4.1.1"
+    "sqlite3": "^4.1.1",
+    "next": "^9.3.3",
+    "react-dom": "^16.13.1",
+    "react": "^16.13.0"
   },
   "engines": {
     "node": "12.x"
