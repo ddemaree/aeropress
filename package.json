@@ -13,7 +13,8 @@
     "react-dom": "^16.13.1",
     "react": "^16.13.0",
     "mobiledoc-kit": "^0.13.0",
-    "react-mobiledoc-editor": "^0.10.0"
+    "react-mobiledoc-editor": "^0.10.0",
+    "tailwindcss": "^1.2.0"
   },
   "engines": {
     "node": "12.x"

@@ -1,4 +1,4 @@
-# hello-sqlite
+# AeroPress
 
 A starter that has a database
 
