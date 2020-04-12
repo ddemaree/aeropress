@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import { Container, Editor, Toolbar } from 'react-mobiledoc-editor'
 
-const EditorBlock = ({ isServer, onChange }) => {
-  // if(typeof window !== 'undefined') return null;
-  if(isServer) return <div></div>
+const isBrowser = () => (!!(typeof window !== 'undefined'))
 
-  return <Container onChange={onChange} className="ap-editor">
+const getEditorBlock = ({ onChange }) => {
+  // if(isServer())
+  //   return <div className="ap-editor-placeholder" />
+
+  return <Container className="ap-editor">
     <Toolbar />
     <Editor />
   </Container>
@@ -18,7 +20,7 @@ const HomePage = () => {
     </Head>
     <div>
       <h1>Editor Test</h1>
-      <EditorBlock isServer={!!(typeof window === 'undefined')} />
+      {isBrowser() && getEditorBlock()}
     </div>
   </>
 }
