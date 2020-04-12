@@ -1,8 +1,10 @@
 dependencies:
   express: 4.17.1
+  mobiledoc-kit: 0.13.0
   next: 9.3.4
   react: 16.13.1
   react-dom: 16.13.1
+  react-mobiledoc-editor: 0.10.0
   sqlite3: 4.1.1
 packages:
   /@ampproject/toolbox-core/2.2.0:
@@ -3591,6 +3593,21 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
+  /mobiledoc-dom-renderer/0.7.0:
+    dev: false
+    resolution:
+      integrity: sha512-A+gT6D4Ru3DKY7ZYOBRORmwhRJ7rDj2vy75D2dWuZS5NgX0mCmGs0yN7qs48YlxvfCif8RFpYsaaPg6Kc3MdJg==
+  /mobiledoc-kit/0.13.0:
+    dependencies:
+      mobiledoc-dom-renderer: 0.7.0
+      mobiledoc-text-renderer: 0.4.1
+    dev: false
+    resolution:
+      integrity: sha512-eCAdO4nwvaS8PwIltX8zNWKAnw+t2qexfxfxtMrwi57HZL3gqV5TnWYHtESKFR50Tdr1QZFGpzCoFIPdjXIa5g==
+  /mobiledoc-text-renderer/0.4.1:
+    dev: false
+    resolution:
+      integrity: sha512-lTu8zCjcBJPRMaHeqoS1vECw3hczxQQjdmqtGSKa3yGHIuozmcWqOGPGrrIcsc4W018dAG/nPdsJiUp+9UkWGw==
   /move-concurrently/1.0.1:
     dependencies:
       aproba: 1.2.0
@@ -4371,6 +4388,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
+  /react-mobiledoc-editor/0.10.0:
+    dependencies:
+      prop-types: 15.7.2
+    dev: false
+    peerDependencies:
+      mobiledoc-kit: ^0.12.2 || ^0.13.0
+      react: ^0.14.7 || ^15.0.0 || ^16.0.0
+      react-dom: ^0.14.7 || ^15.0.0 || ^16.0.0
+    resolution:
+      integrity: sha512-DNo2MpQ0Vc3jTxpmfwLw4fuGAtLe24+9BnbEnb3cncSjtuUBnJDVCzzs1mlQDXn3Zzbni5mqv1Yzr/j57Dirig==
   /react/16.13.1:
     dependencies:
       loose-envify: 1.4.0
@@ -5476,7 +5503,9 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   express: ^4.17.1
+  mobiledoc-kit: ^0.13.0
   next: ^9.3.3
   react: ^16.13.0
   react-dom: ^16.13.1
+  react-mobiledoc-editor: ^0.10.0
   sqlite3: ^4.1.1
