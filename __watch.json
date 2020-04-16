@@ -1,10 +1,17 @@
 {
-  "restart": {
-    "include": [
-      "package.json",
-      "^.env"
-    ]
-  },
-  "throttle": 100
+  "install": "pnpm install && bundle install --path ./.data/bundler",
+  "start": "bin/rails server -p $PORT -b 0.0.0.0",
+  "watch": {
+    "throttle": 100,
+    "install": {
+      "include": [
+        "^Gemfile$", "^package.json$", "^.force-install"
+      ]
+    },
+    "restart": {
+      "include": [
+        "\\.rb$"
+      ]
+    }
+  }
 }
-

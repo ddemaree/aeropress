@@ -46,6 +46,9 @@ const Post = sequelize.define('Post', {
     set(obj) {
       this.setDataValue('meta', JSON.stringify(obj))
     }
+  },
+  __meta: {
+    type: Sequelize.JSON
   }
 }, {});
 
@@ -56,6 +59,8 @@ Post.addHook('beforeCreate', 'setPostCuid', (post, options) => {
 Post.associate = function(models) {
   // associations can be defined here
 };
+
+sequelize.sync().then(() => console.log("DB synced"))
 
 
 db.sequelize = sequelize;
