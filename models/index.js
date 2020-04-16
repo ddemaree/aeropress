@@ -36,20 +36,8 @@ const Post = sequelize.define('Post', {
   cuid: Sequelize.STRING,
   title: Sequelize.STRING,
   html: Sequelize.TEXT,
-  source: Sequelize.TEXT,
-  meta: {
-    type: Sequelize.TEXT,
-    get() {
-      const rawMeta = this.getDataValue('meta');
-      return JSON.parse(rawMeta)
-    },
-    set(obj) {
-      this.setDataValue('meta', JSON.stringify(obj))
-    }
-  },
-  __meta: {
-    type: Sequelize.JSON
-  }
+  source: Sequelize.JSON,
+  meta: Sequelize.JSON
 }, {});
 
 Post.addHook('beforeCreate', 'setPostCuid', (post, options) => {
