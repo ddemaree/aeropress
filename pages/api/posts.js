@@ -7,9 +7,9 @@ export default (req, res) => {
     console.log(req)
     Post.create({title: 'Post title', meta: {hello: 'world'}})
       .then(post => {
-          console.log(post)
-          res.status(200).json({ name: `Created post with ID ${post.id} ${post.cuid}` })
-        })
+        res.status(200).json({ name: `Created post with ID ${post.id} ${post.cuid}` })
+      })
+      .catch(() => res.status(500).json({ name: 'What the hell' }))
   } else {
     // Handle any other HTTP method
     res.status(200).json({ name: 'Next.js posts/index' })
