@@ -16,24 +16,6 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
-  .readdirSync(".")
-  .filter(file => {
-    console.log(file)
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    console.log(file)
-    const model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
-  });
-
-// Object.keys(db).forEach(modelName => {
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
-
 const Post = sequelize.define('Post', {
   cuid: Sequelize.STRING,
   title: Sequelize.STRING,
@@ -50,11 +32,24 @@ Post.associate = function(models) {
   // associations can be defined here
 };
 
-sequelize.sync().then(() => console.log("DB synced"))
+const User = sequelize.define('User', {
+  cuid: Sequelize.STRING,
+  name: Sequelize.STRING,
+  email: Sequelize.STRING,
+  password_digest: Sequelize.STRING,
+}, {});
 
+User.associate = function(models) {
+  // associations can be defined here
+};
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.Post = Post;
 
-module.exports = db;
+module.exports = {
+  db: sequelize,
+  Sequelize,
+  Post,
+  User
+};

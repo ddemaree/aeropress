@@ -1,5 +1,5 @@
 'use strict';
-import cuid from 'cuid';
+const cuid = require('cuid');
 
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define('Post', {
