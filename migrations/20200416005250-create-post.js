@@ -18,10 +18,10 @@ module.exports = {
         type: Sequelize.TEXT
       },
       source: {
-        type: Sequelize.TEXT
+        type: Sequelize.JSON
       },
       meta: {
-        type: Sequelize.TEXT
+        type: Sequelize.JSON
       },
       createdAt: {
         allowNull: false,

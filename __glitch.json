@@ -1,6 +1,6 @@
 {
-  "install": "npm i",
-  "start": "next dev",
+  "install": "npm install",
+  "start": "npm start",
   "watch": {
     "throttle": 100,
     "install": {

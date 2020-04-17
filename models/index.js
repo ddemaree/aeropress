@@ -36,16 +36,19 @@ const User = sequelize.define('User', {
   cuid: Sequelize.STRING,
   name: Sequelize.STRING,
   email: Sequelize.STRING,
+  password: {
+    type: Sequelize.VIRTUAL,
+    set(val) {
+      this.setDataValue('password', val);
+      this.setDataValue('password_digest', this.salt + val);
+    }
+  },
   password_digest: Sequelize.STRING,
 }, {});
 
 User.associate = function(models) {
   // associations can be defined here
 };
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-db.Post = Post;
 
 module.exports = {
   db: sequelize,
