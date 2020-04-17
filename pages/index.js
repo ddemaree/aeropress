@@ -107,7 +107,13 @@ const QuickEntryForm = () => {
   
   const handleSubmit = e => {
     e.preventDefault()
-    fetch('/api/posts', {method: 'POST'})
+    fetch('/api/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
       .then(response => response.json())
       .then(data => {
         console.log(data)
@@ -132,7 +138,6 @@ const HomePage = () => {
     <div>
       <h1>Editor Test</h1>
       <QuickEntryForm />
-      <EditorBlock />
     </div>
   </>
 }
