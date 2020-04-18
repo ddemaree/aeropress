@@ -5,7 +5,11 @@ const PostsIndex = ({ }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    
+    fetch("/api/posts", {method: 'GET'})
+      .then(response => response.json())
+      .then(data => {
+      
+    })
   })
   
   return <div>
