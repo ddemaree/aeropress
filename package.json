@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "prestart": "npm run migrate",
-    "start": "node server.js",
+    "start": "next dev",
     "migrate": "sequelize db:migrate"
   },
   "dependencies": {
