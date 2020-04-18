@@ -1,10 +1,12 @@
 {
-  "name": "hello-sqlite",
+  "name": "@ddemaree/aeropress",
   "version": "0.0.1",
-  "description": "A simple Node app with SQLite as a database management system, instantly up and running.",
+  "description": "A very basic, mostly headless CMS for personal publishing",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "prestart": "npm run migrate",
+    "start": "node server.js",
+    "migrate": "sequelize db:migrate"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -16,7 +18,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.1",
     "react-mobiledoc-editor": "^0.10.0",
-    "sequelize": "^5.21.6",
+    "sequelize": "^6.0.0",
     "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.1",
     "tailwindcss": "^1.2.0"
@@ -25,7 +27,7 @@
     "node": "12.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-sqlite"
+    "url": "https://github.com/ddemaree/aeropress"
   },
   "license": "MIT",
   "keywords": [
