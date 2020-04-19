@@ -3,6 +3,7 @@ dependencies:
   crypto: 1.0.1
   cuid: 2.1.8
   express: 4.17.1
+  lodash: 4.17.15
   mobiledoc-kit: 0.13.0
   next: 9.3.5
   react: 16.13.1
@@ -6992,6 +6993,7 @@ specifiers:
   crypto: ^1.0.1
   cuid: ^2.1.8
   express: ^4.17.1
+  lodash: ^4.17.15
   mobiledoc-kit: ^0.13.0
   next: ^9.3.3
   react: ^16.13.0

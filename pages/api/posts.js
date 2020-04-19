@@ -1,4 +1,5 @@
 import { Post } from '../../models'
+import { omit } from 'lodash'
 
 export default async (req, res) => {
   if (req.method === 'POST') {
@@ -10,7 +11,10 @@ export default async (req, res) => {
   } else {
     
     const { count, rows } = await Post.findAndCountAll({ limit: 50, offset: 0})
-    const posts = rows.map(row => ({ id: row.id, title: row.title }))
+    const posts = rows.map(row => {
+      const rowData = row.toJSON()
+      return omit(({ ...rowData, ...{ id: rowData.cuid } }), ['cuid'])
+    })
     
     // Handle any other HTTP method
     res.status(200).json({ name: 'Next.js posts/index', posts })

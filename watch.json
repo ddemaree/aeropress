@@ -9,7 +9,8 @@
       "^public/",
       "^dist/",
       "^.next/",
-      "^pages/"
+      "^pages/",
+      "^styles/"
     ],
     "include": [
       "^\\.env$",
