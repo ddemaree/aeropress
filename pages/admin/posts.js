@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-
-const getData = url => fetch(url, {method: 'GET'}).then(res => res.json())
+import { Fragment, useState, useEffect } from 'react'
+import { getData } from '../../utils/fetch'
+import SimpleEntryForm from '../../components/simple-entry-form'
 
 const PostsIndex = () => {
   const [data, setData] = useState({ posts: [], loading: true })
@@ -9,6 +9,8 @@ const PostsIndex = () => {
 
   // If posts need to be refreshed, e.g. after a CRUD operation, call this function again
   const updatePosts = () => {
+    console.log("Updating posts")
+
     updateData({ loading: true })
 
     return getData("/api/posts", {method: 'GET'})
@@ -22,12 +24,14 @@ const PostsIndex = () => {
     updatePosts()
   }, [1])
   
-  return <div>
+  return <Fragment>
+    <SimpleEntryForm disabled={loading} onCreate={() => updateData()} />
+
     {loading && <div>Loading...</div>}
-    {!loading && posts.map(post => <div key={post.id} className="admin-post">
+    {posts.map(post => <div key={post.cuid} className="admin-post">
       <div>{post.title}</div>
     </div>)}
-  </div>
+  </Fragment>
 }
 
 export default PostsIndex

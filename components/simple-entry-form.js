@@ -1,7 +1,10 @@
-const SimpleEntryForm = () => {
-  
-  const [values, setValues] = useState({title: ''})
+import { useState } from 'react'
+import { postData } from '../utils/fetch'
 
+const SimpleEntryForm = ({ disabled, onCreate }) => {
+  const [values, setValues] = useState({title: ''})
+  console.log(onCreate)
+  
   const handleChange = name =>
     e => {
       const fieldValue = { [name]: e.target.value }
@@ -11,17 +14,15 @@ const SimpleEntryForm = () => {
   
   const handleSubmit = e => {
     e.preventDefault()
-    fetch('/api/posts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
-    })
-      .then(response => response.json())
+    postData('/api/posts', values)
       .then(data => {
         console.log(data)
         setValues({title: ''})
+      
+        if(typeof onCreate === 'function') {
+          console.log("Running onCreate callback")
+          onCreate()
+        }
       })
   }
 
@@ -33,3 +34,5 @@ const SimpleEntryForm = () => {
     <button type="submit">Create post</button>
   </form>
 }
+
+export default SimpleEntryForm
