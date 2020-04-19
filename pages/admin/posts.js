@@ -8,29 +8,31 @@ const PostsIndex = () => {
   const { posts, loading } = data
 
   // If posts need to be refreshed, e.g. after a CRUD operation, call this function again
-  const updatePosts = () => {
-    console.log("Updating posts")
+  const loadPosts = (cancelled = false) => {
+    if(!cancelled) updateData({ loading: true })
 
-    updateData({ loading: true })
-
-    return getData("/api/posts", {method: 'GET'})
-      .then(data => {
-        const { posts } = data
-        updateData({posts, loading: false})
+    return getData("/api/posts", { method: 'GET' })
+      .then(serverData => {
+        if(!cancelled) updateData({posts: serverData.posts, loading: false})
       })
   }
   
   useEffect(() => {
-    updatePosts()
-  }, [1])
+    let cancelled = false
+    loadPosts(cancelled)
+    return () => { cancelled = true }
+  }, [])
   
   return <Fragment>
-    <SimpleEntryForm disabled={loading} onCreate={() => updateData()} />
+    <SimpleEntryForm disabled={loading} onCreate={() => {
+      loadPosts().then(() => console.log("Posts updated"))
+    }} />
 
-    {loading && <div>Loading...</div>}
     {posts.map(post => <div key={post.cuid} className="admin-post">
       <div>{post.title}</div>
     </div>)}
+    
+    {loading && <div>Loading...</div>}
   </Fragment>
 }
 
