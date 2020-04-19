@@ -4,8 +4,8 @@
   "description": "A very basic, mostly headless CMS for personal publishing",
   "main": "server.js",
   "scripts": {
-    "__prestart": "npm run migrate",
-    "start": "node server.js",
+    "prestart": "npm run migrate",
+    "start": "next dev",
     "migrate": "sequelize db:migrate"
   },
   "dependencies": {
