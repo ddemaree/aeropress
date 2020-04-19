@@ -15,7 +15,8 @@
     "include": [
       "^\\.env$",
       "\\.js$",
-      "\\.json$"
+      "\\.json$",
+      "^\\.restart"
     ]
   },
   "throttle": 1000
