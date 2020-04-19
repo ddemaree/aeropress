@@ -3,7 +3,6 @@ import { postData } from '../utils/fetch'
 
 const SimpleEntryForm = ({ disabled, onCreate }) => {
   const [values, setValues] = useState({title: ''})
-  console.log(onCreate)
   
   const handleChange = name =>
     e => {
