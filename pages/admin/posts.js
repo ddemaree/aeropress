@@ -24,9 +24,7 @@ const PostsIndex = () => {
   }, [])
   
   return <Fragment>
-    <SimpleEntryForm disabled={loading} onCreate={() => {
-      loadPosts().then(() => console.log("Posts updated"))
-    }} />
+    <SimpleEntryForm disabled={loading} onCreate={ () => loadPosts() } />
 
     {posts.map(post => <div key={post.cuid} className="admin-post">
       <div>{post.title}</div>

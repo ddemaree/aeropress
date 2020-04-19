@@ -10,3 +10,7 @@ body {
 p {
   margin-bottom: 1em;
 }
+
+button {
+  @apply bg-blue-500 text-white uppercase font-medium;
+}

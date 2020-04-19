@@ -25,12 +25,12 @@ const SimpleEntryForm = ({ disabled, onCreate }) => {
       })
   }
 
-  return <form onSubmit={handleSubmit}>
-    <div>
-      <label>Title</label>
+  return <form className="flex" onSubmit={handleSubmit}>
+    <div className="flex">
+      <label className="mr-3">Title</label>
       <input type="text" value={values.title} onChange={handleChange('title')} />
     </div>
-    <button type="submit">Create post</button>
+    <button type="submit">Post</button>
   </form>
 }
 
