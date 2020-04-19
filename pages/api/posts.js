@@ -11,12 +11,9 @@ export default async (req, res) => {
   } else {
     
     const { count, rows } = await Post.findAndCountAll({ limit: 50, offset: 0})
-    const posts = rows.map(row => {
-      const rowData = row.toJSON()
-      return omit(({ ...rowData, ...{ id: rowData.cuid } }), ['cuid'])
-    })
-    
+    const posts = rows.map(row => omit(row.toJSON(), ['id']))
+
     // Handle any other HTTP method
-    res.status(200).json({ name: 'Next.js posts/index', posts })
+    res.status(200).json({ count, posts })
   }
 }

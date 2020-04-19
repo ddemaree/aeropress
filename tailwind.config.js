@@ -99,16 +99,9 @@ module.exports = {
       'lg': '760px',
       'dark': {'raw': '(prefers-color-scheme: dark)'},
     },
-    colors: {
-      gray: defaultTheme.colors.gray,
-      blue: defaultTheme.colors.blue,
-      black: defaultTheme.colors.black,
-      red: defaultTheme.colors.red,
-      white: defaultTheme.colors.white
-    },
     extend: {
       fontFamily: {
-        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
         serif: ['IBM Plex Serif', ...defaultTheme.fontFamily.serif],
         mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono]
       },

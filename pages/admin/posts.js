@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+const getData = url => fetch(url, {method: 'GET'}).then(res => res.json())
+
 const PostsIndex = () => {
   const [data, setData] = useState({ posts: [], loading: true })
   const updateData = params => setData({...data, ...params})
@@ -9,8 +11,7 @@ const PostsIndex = () => {
   const updatePosts = () => {
     updateData({ loading: true })
 
-    return fetch("/api/posts", {method: 'GET'})
-      .then(response => response.json())
+    return getData("/api/posts", {method: 'GET'})
       .then(data => {
         const { posts } = data
         updateData({posts, loading: false})
