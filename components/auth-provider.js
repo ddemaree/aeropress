@@ -108,6 +108,16 @@ export const AuthContext = createContext({
   dispatch: () => {}
 });
 
+/*
+
+TODO:
+const = {state, dispatch, getDataWithAuth, postDataWithAuth} = useAuth()
+
+postDataWithAuth = (token) => postData(url, { ... 'Bearer ' + token })
+
+
+*/
+
 export const AuthProvider = ({ children }) => {
   const [ state, dispatch ] = useReducer(authReducer, getDefaultState())
   const [ contextValue, setContextValue ] = useState({

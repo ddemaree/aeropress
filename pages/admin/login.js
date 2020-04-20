@@ -25,10 +25,9 @@ const LoginPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
     
-    setFormState({ ...state, isLoading: true })
+    setFormState({ ...formState, isLoading: true })
     postData('/api/authorize', { username, password })
       .then(data => {
-        console.log(data)
         if(data.error) {
           setFormState({ ...formState, error: data.error, isLoading: false })  
         } else {
