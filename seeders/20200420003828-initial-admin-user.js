@@ -1,4 +1,6 @@
 'use strict';
+const bcrypt = require('bcrypt-nodejs')
+const cuid = require('cuid')
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -12,10 +14,21 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Users', [{
+    const currentTime = new Date()
+    
+    const userParams = {
+      cuid: cuid(),
+      name: "Melody Nelson",
       email: "melody",
-      password: "nelson"
-    }])
+      password_digest: bcrypt.hashSync("nelson"),
+      createdAt: currentTime,
+      updatedAt: currentTime
+    }
+    
+    console.log(userParams)
+    
+    
+    return queryInterface.bulkInsert('Users', [userParams])
   },
 
   down: (queryInterface, Sequelize) => {
