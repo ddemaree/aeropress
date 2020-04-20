@@ -9,9 +9,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    // return Promise.all([
-    //   queryInterface.removeConstraint('Users', 'email_is_unique'),
-    //   // queryInterface.removeConstraint('Users', 'cuid_is_unique')      
-    // ])
+    return queryInterface.removeConstraint('Users', 'email_is_unique')
   }
 };

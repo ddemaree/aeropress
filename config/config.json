@@ -1,7 +1,8 @@
 {
   "development": {
     "dialect": "sqlite",
-    "storage": "./.data/aeropress.sqlite3"
+    "storage": "./.data/aeropress.sqlite3",
+    "seederStorage": "sequelize"
   },
   "test": {
     "dialect": "sqlite",
