@@ -12,12 +12,12 @@ export default async (req, res) => {
     if(user && bcrypt.compareSync(password, user.password_digest)) {
       const token = jwt.sign({ id: user.cuid }, THE_SECRET)
 
-      res.status(200).json({ msg: "Passwords match, send back token", token })
+      res.status(200).json({ success: true, token, user: user.toJSON() })
     } else {
-      res.status(401).json({ msg: "Could not authenticate user" })
+      res.status(401).json({ error: "Could not authenticate user" })
     }
   }
   else {
-    res.status(404).json({ msg: "Not sure what yr doing here" })
+    res.status(404).json({ error: "Not sure what yr doing here" })
   }
 }
