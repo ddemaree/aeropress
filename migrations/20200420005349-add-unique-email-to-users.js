@@ -1,24 +1,17 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-    */
-    queryInterface.addConstraint('Users', [])
+  up: (queryInterface, Sequelize) => {    
+    return queryInterface.addConstraint('Users', ['email'], {
+      type: 'unique',
+      name: 'email_is_unique'
+    })
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+    // return Promise.all([
+    //   queryInterface.removeConstraint('Users', 'email_is_unique'),
+    //   // queryInterface.removeConstraint('Users', 'cuid_is_unique')      
+    // ])
   }
 };
