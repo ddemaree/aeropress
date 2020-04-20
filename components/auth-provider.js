@@ -2,6 +2,7 @@ import { createContext, useState, useReducer } from 'react';
 
 const AUTH_EXPIRES_AT = 'ap_auth_expires_at';
 const AUTH_USER = 'ap_auth_user';
+const AUTH_TOKEN = 'ap_auth_token';
 
 export const AUTH_START = 'START_AUTH'
 export const AUTH_STOP = 'END_AUTH'
@@ -25,6 +26,7 @@ const authReducer = (state, action) => {
       if(typeof localStorage !== "undefined") {
         localStorage.removeItem(AUTH_EXPIRES_AT)
         localStorage.removeItem(AUTH_USER)
+        localStorage.removeItem(AUTH_TOKEN)
       }
       
       return {
@@ -40,9 +42,17 @@ const authReducer = (state, action) => {
   }
 }
 
+export const loginUser = (token = null, user = {}) = {
+  return {
+    type: AUTH_LOGIN,
+    user
+  }
+}
+
 const getDefaultState = () => {
   const DEFAULT_STATE = {
     user: {},
+    authToken: null,
     expiresAt: null,
     isAuthenticating: false
   };
@@ -57,6 +67,7 @@ const getDefaultState = () => {
     if(expiresAt > new Date()) {
       storedState = {
         user: JSON.parse(localStorage.getItem(AUTH_USER) || "{}"),
+        authToken: (localStorage.getItem(AUTH_TOKEN) || ""),
         expiresAt
       }
     }

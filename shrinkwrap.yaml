@@ -3,6 +3,7 @@ dependencies:
   crypto: 1.0.1
   cuid: 2.1.8
   express: 4.17.1
+  js-cookie: 2.2.1
   jsonwebtoken: 8.5.1
   lodash: 4.17.15
   mobiledoc-kit: 0.13.0
@@ -3856,6 +3857,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-a26B+Cx7USQGSWnz9YxgJNMmML/QG2nqIaL7VVYPCXbqiKz8PN0waSNvroMtvAK6tY7g/wPdNWGEP+JTNIBr6A==
+  /js-cookie/2.2.1:
+    dev: false
+    resolution:
+      integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
   /js-levenshtein/1.1.6:
     dev: false
     engines:
@@ -7065,6 +7070,7 @@ specifiers:
   crypto: ^1.0.1
   cuid: ^2.1.8
   express: ^4.17.1
+  js-cookie: ^2.2.1
   jsonwebtoken: ^8.5.1
   lodash: ^4.17.15
   mobiledoc-kit: ^0.13.0
