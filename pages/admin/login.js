@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import { useState, useContext } from 'react'
 import { postData } from '../../utils/fetch'
-import { AuthContext } from '../../components/auth-provider'
+import { AuthContext, loginUser } from '../../components/auth-provider'
 
 const LoginPage = () => {
   const { state, dispatch } = useContext(AuthContext)
-  console.log(state)
 
   const [formState, setFormState] = useState({
     username: '',
@@ -31,6 +30,7 @@ const LoginPage = () => {
         if(data.error) {
           setFormState({ ...formState, error: data.error, isLoading: false, password: '' })  
         } else {
+          dispatch(loginUser(data.token, data.user))
           setFormState({ ...formState, error: null, isLoading: false })          
         }
     })
@@ -40,6 +40,7 @@ const LoginPage = () => {
     <Head>
       <title>Aeropress Login</title>
     </Head>
+    {state.user.email && <div>Logged in as {state.user.email}</div>}
     <form onSubmit={handleSubmit}>
       {error && <div className="bg-red-100">{error}</div>}
       <div>

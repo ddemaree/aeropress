@@ -1,4 +1,5 @@
 import { createContext, useState, useReducer } from 'react';
+import ms from 'ms'
 
 const AUTH_EXPIRES_AT = 'ap_auth_expires_at';
 const AUTH_USER = 'ap_auth_user';
@@ -11,6 +12,7 @@ export const AUTH_LOGIN = 'AUTH_LOGIN'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 
 const authReducer = (state, action) => {
+
   switch(action.type) {
     case AUTH_START:
       return {
@@ -35,17 +37,32 @@ const authReducer = (state, action) => {
         expiresAt: null
       }
     case AUTH_LOGIN:
-      // const { authResult, user } = action;
-      return state;
+      const { authToken, user } = action;
+
+      const expiresAt = ms("1 week") + new Date().getTime();
+
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem(AUTH_EXPIRES_AT, JSON.stringify(expiresAt))
+        localStorage.setItem(AUTH_TOKEN, JSON.stringify(authToken))
+        localStorage.setItem(AUTH_USER, JSON.stringify(user))
+      }
+      
+      return {
+        ...state,
+        authToken,
+        user,
+        expiresAt
+      };
     default:
       return state;
   }
 }
 
-export const loginUser = (token = null, user = {}) = {
+export const loginUser = (authToken = null, user = {}) => {
   return {
     type: AUTH_LOGIN,
-    user
+    user,
+    authToken
   }
 }
 
