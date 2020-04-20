@@ -1,9 +1,11 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useState, useContext } from 'react'
 import { postData } from '../../utils/fetch'
 import { AuthContext, loginUser } from '../../components/auth-provider'
 
 const LoginPage = () => {
+  const router = useRouter()
   const { state, dispatch } = useContext(AuthContext)
 
   const [formState, setFormState] = useState({
@@ -23,15 +25,16 @@ const LoginPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
     
-    setFormState({ ...state, isLoading: true, password: '' })
+    setFormState({ ...state, isLoading: true })
     postData('/api/authorize', { username, password })
       .then(data => {
         console.log(data)
         if(data.error) {
-          setFormState({ ...formState, error: data.error, isLoading: false, password: '' })  
+          setFormState({ ...formState, error: data.error, isLoading: false })  
         } else {
           dispatch(loginUser(data.token, data.user))
-          setFormState({ ...formState, error: null, isLoading: false })          
+          setFormState({ ...formState, error: null, isLoading: false })     
+          router.push("/admin/posts")
         }
     })
   }
@@ -40,7 +43,7 @@ const LoginPage = () => {
     <Head>
       <title>Aeropress Login</title>
     </Head>
-    {state.user.email && <div>Logged in as {state.user.email}</div>}
+    {state.authToken && <div>Logged in as {state.authToken}</div>}
     <form onSubmit={handleSubmit}>
       {error && <div className="bg-red-100">{error}</div>}
       <div>

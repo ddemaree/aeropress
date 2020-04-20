@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from 'react';
+import { createContext, useState, useReducer, useEffect } from 'react'
 import ms from 'ms'
 
 const AUTH_EXPIRES_AT = 'ap_auth_expires_at';
@@ -11,7 +11,7 @@ export const AUTH_ERROR = 'AUTH_ERROR'
 export const AUTH_LOGIN = 'AUTH_LOGIN'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 
-const authReducer = (state, action) => {
+const rootAuthReducer = (state, action) => {
 
   switch(action.type) {
     case AUTH_START:
@@ -58,6 +58,13 @@ const authReducer = (state, action) => {
   }
 }
 
+const authReducer = (state, action) => {
+  console.log("Now handling " + action.type + ": ", action, state)
+  const resultState = rootAuthReducer(state, action)
+  console.log("Done handling " + action.type + ": ", resultState)
+  return resultState
+}
+
 export const loginUser = (authToken = null, user = {}) => {
   return {
     type: AUTH_LOGIN,
@@ -76,7 +83,7 @@ const getDefaultState = () => {
   
   let storedState = {};
   
-  if (typeof localstorage !== 'undefined') {
+  if (typeof localStorage !== 'undefined') {
     const expiresAt = new Date(
       JSON.parse(localStorage.getItem(AUTH_EXPIRES_AT) || "0")
     )
@@ -107,6 +114,18 @@ export const AuthProvider = ({ children }) => {
     state,
     dispatch
   })
+  
+  // Update context value and trigger re-render
+  // This patterns avoids unnecessary deep renders
+  // https://reactjs.org/docs/context.html#caveats
+  useEffect(() => {
+    console.log(state)
+
+    setContextValue((contextValue) => ({
+      ...contextValue,
+      state
+    }));
+  }, [state]);
   
   return <AuthContext.Provider value={contextValue}>
     {children}
