@@ -14,3 +14,19 @@ p {
 button {
   @apply bg-blue-500 text-white uppercase font-medium;
 }
+
+.ap-text-content p {
+  margin: 1em 0;
+}
+
+.ap-text-content h1 {
+  @apply text-3xl;
+}
+
+.ap-text-content h2 {
+  @apply text-2xl;
+}
+
+.ap-text-content h3 {
+  @apply text-xl;
+}

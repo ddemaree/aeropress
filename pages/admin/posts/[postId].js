@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState, Fragment } from 'react'
 import c from 'classnames'
 
+import BlockEditor from '../../../components/block-editor'
+
 const ExpandoTextArea = ({ value, placeholder, className, onChange }) => {
   const textareaRef = useRef(null)
   const phantomRef = useRef(null)
@@ -61,7 +63,11 @@ const EditView = () => {
     <h1>Edit post</h1>
     <ExpandoTextArea placeholder="Add title" value="When the Pawn Hits the Conflicts He Thinks Like a King What He Knows Throws the Blows When He Goes to the Fight" />
     
-    <div>Rich text editor here!!!</div>
+    
+    <div>
+      <BlockEditor />
+    </div>
+    
   </div>
 }
 

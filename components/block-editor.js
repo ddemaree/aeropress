@@ -1,5 +1,5 @@
 
-import { Container, Editor, Toolbar } from 'react-mobiledoc-editor'
+// import { Container, Editor, Toolbar } from 'react-mobiledoc-editor'
 import { createContext, useState, useEffect, useRef, useContext } from 'react'
 import * as MDK from 'mobiledoc-kit'
 
@@ -10,7 +10,7 @@ const SIMPLE_MOBILEDOC = {
   atoms: [],
   cards: [],
   sections: [
-    [1, "p", [
+    [1, "h1", [
       [0, [], 0, "Welcome to Mobiledoc"]
     ]]
   ]
@@ -82,7 +82,7 @@ const EditorBlock = ({ onChange }) => {
     setEditor(editorRef.current)
 
     return () => newEditor.destroy()
-  }, [1])
+  }, [])
 
   return <>
     <EditorContext.Provider value={{
@@ -94,3 +94,5 @@ const EditorBlock = ({ onChange }) => {
     </EditorContext.Provider>
   </>
 }
+
+export default EditorBlock
