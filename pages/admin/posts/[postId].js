@@ -19,14 +19,15 @@ const ExpandoTextArea = ({ value, placeholder, className, onChange }) => {
     ref={textareaRef}
     placeholder={placeholder}
     style={{overflow: 'hidden', overflowWrap: 'break-word', resize: 'none'}}
-    onChange={handleChange}>{value}</textarea>
+    onChange={handleChange}
+    value={value} />
 }
 
 
 const EditView = () => {
   return <div className="max-w-4xl mx-auto">
     <h1>Edit post</h1>
-    <ExpandoTextArea placeholder="Add title" />
+    <ExpandoTextArea placeholder="Add title" value="When the Pawn Hits the Conflicts He Thinks Like a King What He Knows Throws the Blows When He Goes to the Fight and He'll Win the Whole Thing 'fore He Enters the Ring" />
   </div>
 }
 
