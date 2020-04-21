@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from 'react'
-import { getData } from '../../utils/fetch'
-import SimpleEntryForm from '../../components/simple-entry-form'
+import { getData } from '../../../utils/fetch'
+import SimpleEntryForm from '../../../components/simple-entry-form'
 
 const PostsIndex = () => {
   const [data, setData] = useState({ posts: [], loading: true })

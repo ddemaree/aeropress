@@ -12,6 +12,9 @@ const SIMPLE_MOBILEDOC = {
   sections: [
     [1, "h1", [
       [0, [], 0, "Welcome to Mobiledoc"]
+    ]],
+    [1, "p", [
+      [0, [], 0, "The album's title is a poem Apple wrote in response to unfavorable reactions from readers of an unfavorable Spin magazine cover story about her. Richard Harrington of The Washington Post called it Apple's version of Chumbawamba's \"I get knocked down, but I get up again\". \"It came from being made fun of,\" she said, \"and then, of course, it becomes a thing I'm being made fun of for.\""]
     ]]
   ]
 };
