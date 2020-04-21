@@ -6,16 +6,27 @@ const ExpandoTextArea = ({ value, placeholder, className, onChange }) => {
   const phantomRef = useRef(null)
   const [fieldValue, setFieldValue] = useState(value || '')
   const [fieldHeight, setFieldHeight] = useState(122)
-
+  
+  // This is hard-coded, may want to make it computed based on styles[line-height] below
+  const MINIMUM_HEIGHT = 74
+  
   const updateTextareaHeight = () => {
-    
+    // const styles = window.getComputedStyle(phantomRef.current)
+    // console.log(styles['font-size'], styles['padding-top'], styles['line-height'])
+    const phantomHeight = phantomRef.current.offsetHeight
+    const newHeight = phantomHeight > MINIMUM_HEIGHT ? phantomHeight : MINIMUM_HEIGHT
+    setFieldHeight(newHeight)
   }
   
   useEffect(() => {
-    console.log(phantomRef.current.offsetHeight)
-    
-    setFieldHeight(phantomRef.current.offsetHeight)
+    updateTextareaHeight()
   }, [fieldValue])
+  
+  useEffect(() => {
+    const onResize = () => { updateTextareaHeight() }
+    window.addEventListener('resize', onResize)
+    return () => { window.removeEventListener('resize', onResize) }
+  }, [])
   
   const handleChange = e => {
     console.log(e.target.value)
@@ -46,9 +57,9 @@ const ExpandoTextArea = ({ value, placeholder, className, onChange }) => {
 
 
 const EditView = () => {
-  return <div className="max-w-4xl mx-auto">
+  return <div className="max-w-3xl mx-auto">
     <h1>Edit post</h1>
-    <ExpandoTextArea placeholder="Add title" value="When the Pawn Hits the Conflicts He Thinks Like a King What He Knows Throws the Blows When He Goes to the Fight and He'll Win the Whole Thing 'fore He Enters the Ring" />
+    <ExpandoTextArea placeholder="Add title" value="When the Pawn Hits the Conflicts He Thinks Like a King What He Knows Throws the Blows When He Goes to the Fight" />
     
     <div>Rich text editor here!!!</div>
   </div>
