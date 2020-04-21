@@ -3,24 +3,38 @@ import c from 'classnames'
 
 const ExpandoTextArea = ({ value, placeholder, className, onChange }) => {
   const textareaRef = useRef(null)
+  const phantomRef = useRef(null)
   const [fieldValue, setFieldValue] = useState(value || '')
 
-//   useEffect(() => { 
-//   }, [])
+//   const updateTextareaHeight = () => {
+    
+//   }
+  
+  useEffect(() => {
+    console.log(phantomRef.current.offsetHeight)
+  })
   
   const handleChange = e => {
-    console.log(e.target.value, e.target.offsetHeight)
+    console.log(e.target.value)
+    setFieldValue(e.target.value)
     
     if(typeof onChange === 'function') onChange(e)
   }
   
-  return <textarea 
-    className={c('bg-gray-100 text-gray-900 text-4xl py-3 px-3 w-full mx-auto text-center', className)}
-    ref={textareaRef}
-    placeholder={placeholder}
-    style={{overflow: 'hidden', overflowWrap: 'break-word', resize: 'none'}}
-    onChange={handleChange}
-    value={value} />
+  const defaultClasses = 'bg-gray-100 text-gray-900 text-4xl py-3 px-3 w-full mx-auto text-center leading-snug'
+  
+  return <Fragment>
+    <textarea 
+      className={c(defaultClasses, className)}
+      ref={textareaRef}
+      placeholder={placeholder}
+      style={{overflow: 'hidden', overflowWrap: 'break-word', resize: 'none'}}
+      onChange={handleChange}
+      value={fieldValue} />
+    <div
+      ref={phantomRef}
+      className={c(defaultClasses)}>{fieldValue}</div>
+  </Fragment>
 }
 
 
