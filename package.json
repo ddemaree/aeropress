@@ -26,7 +26,8 @@
     "lodash": "^4.17.15",
     "jsonwebtoken": "^8.5.1",
     "js-cookie": "^2.2.1",
-    "ms": "^2.1.2"
+    "ms": "^2.1.2",
+    "classnames": "^2.2.6"
   },
   "engines": {
     "node": "12.x"
