@@ -31,10 +31,9 @@ const ExpandoTextArea = ({ value, placeholder, className, onChange }) => {
   }, [])
   
   const handleChange = e => {
-    console.log(e.target.value)
-    setFieldValue(e.target.value)
-    
-    if(typeof onChange === 'function') onChange(e)
+    const newTitle = e.target.value
+    setFieldValue(newTitle)
+    if(typeof onChange === 'function') onChange(newTitle)
   }
   
   const defaultClasses = 'bg-gray-100 text-gray-900 text-4xl py-3 px-3 w-full mx-auto text-center leading-snug'
@@ -59,24 +58,37 @@ const ExpandoTextArea = ({ value, placeholder, className, onChange }) => {
 
 
 const EditView = () => {
- const [postData, dispatch] = useReducer({title: '', source: {}}, (state, action) => {
-   switch(action.type ){
+  const rootReducer = (state, action) => {
+    switch(action.type){
      case 'update_title':
-       return { ...state, title: action.title };
+       const { title } = action
+       return { ...state, title };
      case 'update_mobiledoc_source':
-       return { ...state, source: { format: 'mobiledoc'} }
+       const { mobiledoc } = action
+       return { ...state, source: { format: 'mobiledoc', mobiledoc } }
      default:
        return state;
-   }
-
- }) 
+    }
+  }
+  
+  const defaultState = {title: '', source: {}}
+  
+  const [postData, dispatch] = useReducer((state, action) => {
+    console.log(`Dispatched ${action.type}`, action, state)
+    const newState = rootReducer(state, action)
+    console.log(`Done - ${action.type}`, newState)
+    return newState
+  }, defaultState)
   
   return <div className="max-w-3xl mx-auto">
     <h1>Edit post</h1>
-    <ExpandoTextArea placeholder="Add title" value="When the Pawn Hits the Conflicts He Thinks Like a King What He Knows Throws the Blows When He Goes to the Fight" />
+    <ExpandoTextArea 
+      placeholder="Add title"
+      value={postData.title}
+      onChange={title => dispatch({type: 'update_title', title})} />
     
     <div>
-      <BlockEditor />
+      <BlockEditor onChange={mobiledoc => dispatch({type: 'update_mobiledoc_source', mobiledoc})} />
     </div>
     
   </div>
