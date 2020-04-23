@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, Fragment } from 'react'
+import { useRef, useEffect, useState, useReducer, Fragment } from 'react'
 import c from 'classnames'
 
 import BlockEditor from '../../../components/block-editor'
@@ -59,10 +59,21 @@ const ExpandoTextArea = ({ value, placeholder, className, onChange }) => {
 
 
 const EditView = () => {
+ const [postData, dispatch] = useReducer({title: '', source: {}}, (state, action) => {
+   switch(action.type ){
+     case 'update_title':
+       return { ...state, title: action.title };
+     case 'update_mobiledoc_source':
+       return { ...state, source: { format: 'mobiledoc'} }
+     default:
+       return state;
+   }
+
+ }) 
+  
   return <div className="max-w-3xl mx-auto">
     <h1>Edit post</h1>
     <ExpandoTextArea placeholder="Add title" value="When the Pawn Hits the Conflicts He Thinks Like a King What He Knows Throws the Blows When He Goes to the Fight" />
-    
     
     <div>
       <BlockEditor />

@@ -75,10 +75,10 @@ const EditorBlock = ({ onChange }) => {
     })
     newEditor.postDidChange(() => {
       const mobiledoc = newEditor.serialize(LATEST_MOBILEDOC_VERSION);
-      console.log(mobiledoc)
+      if(typeof onChange === 'function') onChange(mobiledoc)
     });
     newEditor.inputModeDidChange(() => {
-      console.log("HI")
+      console.log("Input mode did change")
     })
 
     editorRef.current = newEditor
@@ -90,7 +90,6 @@ const EditorBlock = ({ onChange }) => {
   return <>
     <EditorContext.Provider value={{
       editor,
-      hello: 'world',
       ...activeState
     }}>
       <EditorInput />
