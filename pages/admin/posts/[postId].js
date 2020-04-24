@@ -34,7 +34,7 @@ const EditView = () => {
       value={postData.title}
       onChange={title => dispatch({type: 'update_title', title})} />
     
-    <div>
+    <div className="">
       <BlockEditor onChange={mobiledoc => dispatch({type: 'update_mobiledoc_source', mobiledoc})} />
     </div>
     
