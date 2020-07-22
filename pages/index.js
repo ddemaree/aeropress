@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Link from 'next/link'
+
 import { Container, Editor, Toolbar } from 'react-mobiledoc-editor'
 import { useState, useEffect, useRef, useContext } from 'react'
 import * as MDK from 'mobiledoc-kit'
@@ -136,8 +138,7 @@ const HomePage = () => {
       <title>David's project</title>
     </Head>
     <div>
-      <h1>Editor Test</h1>
-      <QuickEntryForm />
+      <Link href="/admin/posts"><a>Go to Posts</a></Link>
     </div>
   </>
 }
